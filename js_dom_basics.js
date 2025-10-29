@@ -29,30 +29,30 @@ document
 // ==========================================
 
 // Selects element by ID (returns single element or null)
-const header = document.getElementById('header');
-console.log(header); // <div id="header">...</div>
+const headerEl = document.getElementById('header');
+console.log(headerEl);// <div id="header">...</div>
 
 // Returns null if not found
-const missing = document.getElementById('nonexistent');
-console.log(missing); // null
+const missingEl = document.getElementById('nonexistent');
+console.log(missingEl); // null
 
 // ==========================================
 // 3. GETELEMENTSBYCLASSNAME
 // ==========================================
 
 // Selects all elements with class (returns HTMLCollection)
-const buttons = document.getElementsByClassName('btn');
-console.log(buttons); // HTMLCollection [button.btn, button.btn, ...]
+const btns = document.getElementsByClassName('btn');
+console.log(btns); // HTMLCollection [button.btn, button.btn, ...]
 
 // HTMLCollection is live (updates automatically)
 console.log(buttons.length); // 3
 // If you add a button with class 'btn', buttons.length becomes 4
 
 // Access by index
-const firstButton = buttons[0];
+const firstBtn = btns[0];
 
 // Convert to array
-const buttonArray = Array.from(buttons);
+const btnArray = Array.from(btns);
 const buttonArray2 = [...buttons];
 
 // ==========================================
@@ -61,7 +61,8 @@ const buttonArray2 = [...buttons];
 
 // Selects all elements by tag name
 const paragraphs = document.getElementsByTagName('p');
-const allDivs = document.getElementsByTagName('div');
+const divs = document.getElementsByTagName('div');
+
 const allElements = document.getElementsByTagName('*'); // All elements
 
 // ==========================================
@@ -71,10 +72,10 @@ const allElements = document.getElementsByTagName('*'); // All elements
 // Selects FIRST matching element using CSS selector
 const mainHeader = document.querySelector('#header');
 const firstButton = document.querySelector('.btn');
-const firstParagraph = document.querySelector('p');
+const firstPara = document.querySelector('p');
 
 // Complex selectors
-const nestedElement = document.querySelector('.container .card h2');
+const nestedEl = document.querySelector('.container .card h2');
 const attributeSelector = document.querySelector('[data-id="123"]');
 const pseudoSelector = document.querySelector('button:hover');
 
@@ -89,7 +90,7 @@ const notFound = document.querySelector('.does-not-exist');
 // ==========================================
 
 // Selects ALL matching elements (returns NodeList)
-const allButtons = document.querySelectorAll('.btn');
+const allBtns = document.querySelectorAll('.btn');
 const allParagraphs = document.querySelectorAll('p');
 
 // NodeList is static (doesn't update automatically)
@@ -97,10 +98,7 @@ console.log(allButtons.length); // 3
 // Add a button with class 'btn', allButtons.length stays 3
 
 // NodeList has forEach
-allButtons.forEach(button => {
-  console.log(button.textContent);
-});
-
+allBtns.forEach(b => console.log(b.textContent));
 // Convert to array
 const buttonsArray = Array.from(allButtons);
 const buttonsArray2 = [...allButtons];
@@ -142,21 +140,22 @@ querySelectorAll:
 // 8. PARENT/CHILD/SIBLING SELECTION
 // ==========================================
 
-const element = document.querySelector('.my-element');
+const myElement = document.querySelector('.my-element');
 
 // Parent
-const parent = element.parentElement;
+if (myElement) {
+  const parent = myElement.parentElement;
+  const children = myElement.children;
+  const nextSibling = myElement.nextElementSibling;
+  const prevSibling = myElement.previousElementSibling;
+}
 const parentNode = element.parentNode; // Similar but includes non-element nodes
 
 // Children
-const children = element.children; // HTMLCollection of child elements
+
 const childNodes = element.childNodes; // NodeList (includes text nodes)
 const firstChild = element.firstElementChild;
 const lastChild = element.lastElementChild;
-
-// Siblings
-const nextSibling = element.nextElementSibling;
-const previousSibling = element.previousElementSibling;
 
 // Closest (finds nearest ancestor matching selector)
 const card = element.closest('.card');
